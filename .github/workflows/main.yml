@@ -15,10 +15,12 @@ jobs:
         # Kita matikan fitur submodule otomatis di sini
         
       - name: Download Correct Submodules Manual
+        shell: bash
         run: |
+          rm -rf lib/samp-plugin-sdk lib/cmake-modules lib/subhook
           git clone https://github.com/maddinat0r/samp-plugin-sdk.git lib/samp-plugin-sdk
           git clone https://github.com/AmyrAhmady/samp-cmake-modules.git lib/cmake-modules
-          git clone https://github.com/tianocore/edk2-subhook.git lib/subhook
+          git clone https://github.com/pawn-lang/subhook.git lib/subhook
 
       - name: Configure CMake (Windows 32-bit)
         run: cmake -B build -A Win32
@@ -39,10 +41,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download Correct Submodules Manual
+        shell: bash
         run: |
+          rm -rf lib/samp-plugin-sdk lib/cmake-modules lib/subhook
           git clone https://github.com/maddinat0r/samp-plugin-sdk.git lib/samp-plugin-sdk
           git clone https://github.com/AmyrAhmady/samp-cmake-modules.git lib/cmake-modules
-          git clone https://github.com/tianocore/edk2-subhook.git lib/subhook
+          git clone https://github.com/pawn-lang/subhook.git lib/subhook
 
       - name: Install 32-bit Dependencies
         run: |
