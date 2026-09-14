@@ -21,7 +21,7 @@ jobs:
           git clone https://github.com/tianocore/edk2-subhook.git lib/subhook
 
       - name: Configure CMake (Windows 32-bit)
-        run: cmake -B build -G "Visual Studio 17 2022" -A Win32
+        run: cmake -B build -A Win32
 
       - name: Build Plugin
         run: cmake --build build --config Release
