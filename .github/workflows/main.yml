@@ -12,8 +12,13 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
+        # Kita matikan fitur submodule otomatis di sini
+        
+      - name: Download Correct Submodules Manual
+        run: |
+          git clone https://github.com/maddinat0r/samp-plugin-sdk.git lib/samp-plugin-sdk
+          git clone https://github.com/AmyrAhmady/samp-cmake-modules.git lib/cmake-modules
+          git clone https://github.com/tianocore/edk2-subhook.git lib/subhook
 
       - name: Configure CMake (Windows 32-bit)
         run: cmake -B build -G "Visual Studio 17 2022" -A Win32
@@ -21,7 +26,7 @@ jobs:
       - name: Build Plugin
         run: cmake --build build --config Release
 
-      - name: Upload Artifact
+      - name: Upload Artifact Windows
         uses: actions/upload-artifact@v4
         with:
           name: plugin-windows
@@ -32,8 +37,12 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
+      - name: Download Correct Submodules Manual
+        run: |
+          git clone https://github.com/maddinat0r/samp-plugin-sdk.git lib/samp-plugin-sdk
+          git clone https://github.com/AmyrAhmady/samp-cmake-modules.git lib/cmake-modules
+          git clone https://github.com/tianocore/edk2-subhook.git lib/subhook
 
       - name: Install 32-bit Dependencies
         run: |
@@ -47,7 +56,7 @@ jobs:
       - name: Build Plugin
         run: cmake --build build --config Release
 
-      - name: Upload Artifact
+      - name: Upload Artifact Linux
         uses: actions/upload-artifact@v4
         with:
           name: plugin-linux
